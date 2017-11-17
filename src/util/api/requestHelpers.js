@@ -1,7 +1,17 @@
+import { getAccessToken } from '../auth/AuthService';
+
 const baseUrl = 'http://localhost:1337';
 
 function get(path, callback) {
-  fetch(`${baseUrl}${path}`)
+  let headers = new Headers({
+    Authorization: `Bearer ${getAccessToken()}`
+  });
+
+  let init = { method: 'GET',
+               headers: headers,
+               mode: 'cors' };
+
+  fetch(`${baseUrl}${path}`, init)
     .then(result => {
       return result.json();
     })
@@ -15,9 +25,14 @@ function get(path, callback) {
 
 
 function post(path, body, callback) {
+  let headers = new Headers({
+    'Content-Type': 'application/json',
+    Authorization: `Bearer ${getAccessToken()}`
+  });
+
   let init = { method: 'POST',
                 mode: 'cors',
-                headers: { 'Content-Type': 'application/json' },
+                headers: headers,
                 body: JSON.stringify(body)
               };
 

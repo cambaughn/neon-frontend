@@ -11,16 +11,16 @@ function user(state = {}, action) {
   }
 }
 
-function currentTopic(state = '', action) {
+function activeTopic(state = 'code', action) {
   switch (action.type) {
-    case 'SET_CURRENT_TOPIC':
+    case 'SET_ACTIVE_TOPIC':
       return action.topic;
     default:
       return state;
   }
 }
 
-function topics(state = [], action) {
+function topics(state = ['all', 'testing', 'general', 'code', 'secret project'], action) {
   switch (action.type) {
     case 'SET_TOPICS':
       return action.topics;
@@ -42,7 +42,8 @@ function docs(state = [], action) {
 const neonApp = combineReducers({
   user,
   topics,
+  activeTopic,
   docs,
 });
 
-module.exports = { user, currentTopic, topics, docs, neonApp };
+module.exports = { user, activeTopic, topics, docs, neonApp };

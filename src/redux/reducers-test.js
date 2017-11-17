@@ -1,7 +1,7 @@
 const expect = require('expect');
 const deepfreeze = require('deepfreeze');
 
-const { user, currentTopic, topics, docs } = require('./reducers');
+const { user, activeTopic, topics, docs } = require('./reducers');
 
 
 
@@ -20,13 +20,13 @@ function testUser() {
 }
 
 
-function testCurrentTopic() {
+function testActiveTopic() {
   let stateBefore = [];
-  let action = { type: 'SET_CURRENT_TOPIC', topic: 'code' };
+  let action = { type: 'SET_ACTIVE_TOPIC', topic: 'code' };
   let stateAfter = 'code';
 
   deepfreeze(stateBefore);
-  expect(currentTopic(stateBefore, action)).toEqual(stateAfter);
+  expect(activeTopic(stateBefore, action)).toEqual(stateAfter);
 }
 
 
@@ -59,7 +59,7 @@ function testDocs() {
 }
 
 
-const tests = [testUser, testCurrentTopic, testTopics, testDocs];
+const tests = [testUser, testActiveTopic, testTopics, testDocs];
 tests.forEach(test => test());
 
 

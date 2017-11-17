@@ -12,6 +12,19 @@ function removeUser() {
   }
 }
 
+function setTopics(topics) {
+  return {
+    type: 'SET_TOPICS',
+    topics
+  }
+}
+
+function setActiveTopic(topic) {
+  return {
+    type: 'SET_ACTIVE_TOPIC',
+    topic
+  }
+}
 
 
-export { setUser, removeUser };
+export { setUser, removeUser, setTopics, setActiveTopic };
